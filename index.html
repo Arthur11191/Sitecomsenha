@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <title>Verificação de Key - 99 Noites</title>
+  <style>
+    body {
+      background-color: #0d0d0d;
+      color: #00ff99;
+      font-family: Arial, sans-serif;
+      text-align: center;
+      padding-top: 20%;
+    }
+    input {
+      padding: 10px;
+      font-size: 16px;
+      border-radius: 6px;
+      border: none;
+      width: 200px;
+      margin-bottom: 15px;
+    }
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      background-color: #00ff99;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      color: #000;
+      font-weight: bold;
+    }
+    button:hover {
+      background-color: #00cc77;
+    }
+    #msgErro {
+      color: #ff4444;
+      margin-top: 15px;
+      font-weight: bold;
+      height: 24px;
+    }
+  </style>
+</head>
+<body>
+  <h1>🔐 Verifique sua Key - 99 Noites</h1>
+  <input type="text" id="inputKey" placeholder="Digite sua key aqui" autocomplete="off" />
+  <br />
+  <button onclick="verificarKey()">Verificar key</button>
+  <div id="msgErro"></div>
+
+  <script>
+    function verificarKey() {
+      const keyVal = document.getElementById('inputKey').value.trim();
+      const msgErro = document.getElementById('msgErro');
+
+      if (keyVal === '99noites') {
+        msgErro.textContent = '';
+        // Redireciona para o site com a key original
+        window.location.href = 'https://arthur11191.github.io/99noites-key';
+      } else {
+        msgErro.textContent = '❌ Key inválida. Tente novamente.';
+      }
+    }
+
+    // Permite enviar com Enter
+    document.getElementById('inputKey').addEventListener('keydown', function(e) {
+      if (e.key === 'Enter') {
+        verificarKey();
+      }
+    });
+  </script>
+</body>
+  </html>
