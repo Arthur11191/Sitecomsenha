@@ -2,7 +2,7 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
-  <title>Validação de Key - 99 Noites</title>
+  <title>Validação da Key</title>
   <style>
     body {
       background-color: #0d1b2a;
@@ -11,89 +11,76 @@
       text-align: center;
       padding-top: 10%;
     }
-
-    #mensagemKey {
-      font-size: 40px;
+    .key-box {
+      background-color: #1b263b;
+      color: #00ffff;
+      box-shadow: 0 0 10px #00ffff;
+      display: inline-block;
+      padding: 10px 20px;
+      border-radius: 8px;
+      font-size: 20px;
+      margin-top: 15px;
+    }
+    #mensagemInicial {
+      font-size: 26px;
       font-weight: bold;
-      color: #00ff88;
       margin-bottom: 30px;
       animation: piscar 0.8s infinite alternate;
     }
-
     @keyframes piscar {
       from { opacity: 1; }
-      to { opacity: 0.3; }
+      to { opacity: 0.2; }
     }
-
-    input[type="text"] {
+    input {
       padding: 10px;
-      border: none;
-      border-radius: 5px;
       font-size: 16px;
-      margin-top: 10px;
+      border-radius: 5px;
+      border: none;
+      margin-top: 15px;
     }
-
     button {
       padding: 10px 20px;
       font-size: 16px;
+      margin-left: 10px;
+      background-color: #00ffff;
+      color: #000;
       border: none;
       border-radius: 5px;
-      background-color: #00ffff;
-      color: #0d1b2a;
-      margin-left: 10px;
       cursor: pointer;
-    }
-
-    .key-box {
-      background-color: #1b263b;
-      display: inline-block;
-      padding: 12px 20px;
-      border-radius: 8px;
-      margin-top: 30px;
-      color: #00ffff;
-      box-shadow: 0 0 10px #00ffff;
-      font-size: 18px;
     }
   </style>
 </head>
 <body>
+  <div id="mensagemInicial">🔑 KEY PARA DIGITAR: <strong>keynew99noites0</strong></div>
 
-  <div id="mensagemKey">KEY PARA DIGITAR: Keynew99noites0</div>
+  <div>
+    <input type="text" id="entradaKey" placeholder="Digite a key aqui">
+    <button onclick="verificarKey()">Verificar Key</button>
+  </div>
 
-  <h1>🔐 Verifique sua key para acessar</h1>
-
-  <input type="text" id="userKey" placeholder="Digite sua key">
-  <button onclick="verificarKey()">Verificar Key</button>
-
-  <div id="resultado" style="margin-top: 20px;"></div>
+  <div id="resultado" class="key-box" style="display:none; margin-top: 30px;"></div>
 
   <script>
     const keyCorreta = "keynew99noites0";
+    const keyFinal = "Keynova99Noites0";
 
-    // Esconde a mensagem após 3 segundos
     setTimeout(() => {
-      const msg = document.getElementById("mensagemKey");
+      const msg = document.getElementById("mensagemInicial");
       if (msg) msg.style.display = "none";
     }, 3000);
 
     function verificarKey() {
-      const input = document.getElementById("userKey").value.trim().toLowerCase();
+      const entrada = document.getElementById("entradaKey").value.trim();
       const resultado = document.getElementById("resultado");
 
-      if (input === keyCorreta) {
-        resultado.innerHTML = `
-          <h2>✅ Key válida!</h2>
-          <p>Sua nova key é:</p>
-          <div class="key-box">Keynova99Noites0</div>
-        `;
-        // Toca som (opcional)
-        const audio = new Audio("https://www.myinstants.com/media/sounds/free-fire-novo.mp3");
-        audio.play();
+      if (entrada === keyCorreta) {
+        resultado.textContent = "🎉 SUA KEY: " + keyFinal;
+        resultado.style.display = "inline-block";
       } else {
-        resultado.innerHTML = "<h2 style='color: red'>❌ Key inválida. Tente novamente.</h2>";
+        resultado.textContent = "❌ Key incorreta. Tente novamente.";
+        resultado.style.display = "inline-block";
       }
     }
   </script>
-
 </body>
 </html>
