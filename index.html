@@ -9,8 +9,22 @@
       color: #00ffff;
       font-family: Arial, sans-serif;
       text-align: center;
-      padding-top: 15%;
+      padding-top: 10%;
     }
+
+    #mensagemKey {
+      font-size: 40px;
+      font-weight: bold;
+      color: #00ff88;
+      margin-bottom: 30px;
+      animation: piscar 0.8s infinite alternate;
+    }
+
+    @keyframes piscar {
+      from { opacity: 1; }
+      to { opacity: 0.3; }
+    }
+
     input[type="text"] {
       padding: 10px;
       border: none;
@@ -18,6 +32,7 @@
       font-size: 16px;
       margin-top: 10px;
     }
+
     button {
       padding: 10px 20px;
       font-size: 16px;
@@ -28,6 +43,7 @@
       margin-left: 10px;
       cursor: pointer;
     }
+
     .key-box {
       background-color: #1b263b;
       display: inline-block;
@@ -42,6 +58,8 @@
 </head>
 <body>
 
+  <div id="mensagemKey">KEY PARA DIGITAR: Keynew99noites0</div>
+
   <h1>🔐 Verifique sua key para acessar</h1>
 
   <input type="text" id="userKey" placeholder="Digite sua key">
@@ -50,7 +68,13 @@
   <div id="resultado" style="margin-top: 20px;"></div>
 
   <script>
-    const keyCorreta = "99noites";
+    const keyCorreta = "keynew99noites0";
+
+    // Esconde a mensagem após 3 segundos
+    setTimeout(() => {
+      const msg = document.getElementById("mensagemKey");
+      if (msg) msg.style.display = "none";
+    }, 3000);
 
     function verificarKey() {
       const input = document.getElementById("userKey").value.trim().toLowerCase();
@@ -59,10 +83,10 @@
       if (input === keyCorreta) {
         resultado.innerHTML = `
           <h2>✅ Key válida!</h2>
-          <p>Sua key para acessar o conteúdo é:</p>
-          <div class="key-box">keynew99noites0</div>
+          <p>Sua nova key é:</p>
+          <div class="key-box">Keynova99Noites0</div>
         `;
-        // Som de sucesso opcional:
+        // Toca som (opcional)
         const audio = new Audio("https://www.myinstants.com/media/sounds/free-fire-novo.mp3");
         audio.play();
       } else {
