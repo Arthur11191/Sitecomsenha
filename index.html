@@ -44,4 +44,98 @@
     .key-box {
       background-color: #333;
       display: inline-block;
-      padding: 10px 20px
+      padding: 10px 20px;
+      border-radius: 8px;
+      color: #fff;
+      font-size: 20px;
+      margin-top: 30px;
+      display: none;
+      word-break: break-word;
+      min-width: 250px;
+    }
+    #validando {
+      font-size: 20px;
+      margin-top: 30px;
+    }
+    footer {
+      position: fixed;
+      bottom: 10px;
+      width: 100%;
+      text-align: center;
+      color: #009966cc;
+      font-size: 14px;
+      font-family: monospace, monospace;
+      user-select: none;
+    }
+  </style>
+</head>
+<body>
+  <h1>🔐 Verifique sua Key - 99 Noites</h1>
+  <input type="text" id="inputKey" placeholder="Digite sua key aqui" autocomplete="off" />
+  <button id="btnVerificar">Verificar key</button>
+
+  <p id="validando" style="display:none;">Validando acesso...</p>
+  <div class="key-box" id="keyText"></div>
+
+  <footer>
+    key: keynew99noites0
+  </footer>
+
+  <audio id="audioValidado" src="data:audio/wav;base64,UklGRigAAABXQVZFZm10IBAAAAABAAEAESsAACJWAAACABAAZGF0YQAAAAA="></audio>
+
+  <script>
+    function getParameterByName(name) {
+      const url = window.location.href;
+      name = name.replace(/[\[\]]/g, '\\$&');
+      const regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)');
+      const results = regex.exec(url);
+      if (!results) return null;
+      if (!results[2]) return '';
+      return decodeURIComponent(results[2].replace(/\+/g, ' '));
+    }
+
+    const inputKey = document.getElementById('inputKey');
+    const btnVerificar = document.getElementById('btnVerificar');
+    const validando = document.getElementById('validando');
+    const keyText = document.getElementById('keyText');
+    const audio = document.getElementById('audioValidado');
+
+    // Função que exibe a key com delay e som
+    function mostrarKey(key) {
+      validando.style.display = 'block';
+      keyText.style.display = 'none';
+
+      setTimeout(() => {
+        validando.style.display = 'none';
+        keyText.textContent = key;
+        keyText.style.display = 'inline-block';
+        audio.play();
+      }, 2000);
+    }
+
+    // Se tiver key na URL, preenche e mostra
+    const keyParam = getParameterByName('key');
+    if (keyParam) {
+      inputKey.value = keyParam;
+      mostrarKey(keyParam);
+    }
+
+    // Evento ao clicar no botão
+    btnVerificar.addEventListener('click', () => {
+      const val = inputKey.value.trim();
+      if (val.length === 0) {
+        alert('Por favor, digite uma key válida.');
+        return;
+      }
+      mostrarKey(val);
+    });
+
+    // Permite Enter para verificar
+    inputKey.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') {
+        btnVerificar.click();
+      }
+    });
+  </script>
+</body>
+</html>
